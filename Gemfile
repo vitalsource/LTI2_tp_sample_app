@@ -1,13 +1,11 @@
 source 'https://rubygems.org'
 
-ruby '2.1.2'
-
-gem 'rails', '~> 4.1.1'
+gem 'rails', '~> 4.1.6'
 
 gem 'mysql2', '~> 0.3.13'
 gem 'sqlite3'
 
-gem 'lti2', :path => '../'
+gem 'lti2', '~> 0.0.3'
 
 gem 'activeadmin', github: 'gregbell/active_admin'
 #Active admin dependencies
