@@ -259,7 +259,6 @@ DEPENDENCIES
   pry-rescue
   pry-stack_explorer
   quiet_assets
-  rails (~> 4.1.6)
   ransack!
   sass-rails (~> 4.0.0)
   sqlite3
