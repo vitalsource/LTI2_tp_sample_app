@@ -1,17 +1,18 @@
 source 'https://rubygems.org'
 
-# use lti2 gem rails version
-# gem 'rails', '~> 4.1.6'
+ruby '2.1.4'
+
+gem 'rails', '~> 4.1.6'
 
 gem 'mysql2', '~> 0.3.13'
 gem 'sqlite3'
 
-gem 'lti2', '~> 0.0.3'
+gem 'lti2', git: 'git@github.com:vitalsource/lti2.git', branch: 'LTI21-new'
 
 gem 'activeadmin', github: 'gregbell/active_admin'
 #Active admin dependencies
-gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'rails-4'
-gem 'inherited_resources', '~> 1.4.1'
+gem 'ransack'
+gem 'inherited_resources'
 
 gem 'haml-rails', '~> 0.4'
 gem 'httparty', '~> 0.8.1'
