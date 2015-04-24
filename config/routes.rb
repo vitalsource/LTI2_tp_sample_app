@@ -1,14 +1,20 @@
-Fabericious::Application.routes.draw do
+Lumos::Application.routes.draw do
 
-  mount Lti2Tp::Engine, at: '/lti2_tp'
+  mount Lti2Tc::Engine, at: '/lti2_tc'
 
-  resources :echoes
-  resources :settings
-  resources :iresources
-  resources :lti_registration_wips
+  resources :registries
+  resources :results
 
-  post 'lti_registrations' => 'lti_registrations#create', as: 'lti_registration'
+  get "docs", :to => "docs#show"
 
-  root 'home#index'
+  get "home/index"
+
+  root :to => "home#index"
+
+  ActiveAdmin.routes(self)
+
+  post '/admin/register_new_tool', :to => 'admin/register_new_tool#index'
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
 
 end

@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Fabericious::Application.load_tasks
+Lumos::Application.load_tasks

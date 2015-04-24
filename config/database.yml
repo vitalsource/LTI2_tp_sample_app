@@ -2,7 +2,7 @@ development:
   adapter: mysql2
   host: localhost
   encoding: utf8
-  database: tpsampleapp
+  database: tcsampleapp
   username: ltiuser
   password: ltipswd
   pool: 5
@@ -13,7 +13,7 @@ mysql:
   adapter: mysql2
   host: localhost
   encoding: utf8
-  database: tpsampleapp
+  database: tcsampleapp
   username: ltiuser
   password: ltipswd
   pool: 5
@@ -27,17 +27,17 @@ sqlite3:
   timeout: 5000
 
 test:
-  adapter: mysql2
-  host: localhost
-  encoding: utf8
-  database: tpsampleapp
-  username: ltiuser
-  password: ltipswd
+  adapter: sqlite3
+  database: db/development.sqlite3
   pool: 5
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: mysql2
+  host: localhost
+  encoding: utf8
+  database: tcsampleapp
+  username: ltiuser
+  password: ltipswd
   pool: 5
   timeout: 5000
