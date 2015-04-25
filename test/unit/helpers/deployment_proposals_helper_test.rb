@@ -1,4 +1,4 @@
 require 'test_helper'
 
-class DeploymentRequestsHelperTest < ActionView::TestCase
+class DeploymentProposalsHelperTest < ActionView::TestCase
 end

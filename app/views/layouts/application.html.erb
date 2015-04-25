@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Lumos</title>
-  <%= stylesheet_link_tag    "stylesheets/docs", :media => "all" %>
-  <%= javascript_include_tag "stylesheets/docs" %>
+  <title>Fabericious</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag 'formtastic', 'my_formtastic_changes' %>
+  <!--[if IE 6]><%= stylesheet_link_tag 'formtastic_ie6' %><![endif]-->
+  <!--[if IE 7]><%= stylesheet_link_tag 'formtastic_ie7' %><![endif]-->
   <%= csrf_meta_tags %>
 </head>
 <body>

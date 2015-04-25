@@ -7,19 +7,16 @@ gem 'rails', '~> 4.1.6'
 gem 'mysql2', '~> 0.3.13'
 gem 'sqlite3'
 
-gem 'lti2', :path => '../'
+gem 'lti2', git: 'git@github.com:vitalsource/lti2-reference.git'
 
 gem 'activeadmin', github: 'gregbell/active_admin'
 #Active admin dependencies
 gem 'ransack'
 gem 'inherited_resources'
-gem 'devise'
 
-gem 'haml-contrib'
 gem 'haml-rails', '~> 0.4'
 gem 'httparty', '~> 0.8.1'
-gem 'jquery-rails', '~> 3.1.0'
-gem 'jquery-ui-rails'
+gem 'jquery-rails', '~> 3.0.4'
 gem 'json', '~> 1.8.0'
 gem 'jsonpath', '0.5.1'
 gem 'lrucache'
