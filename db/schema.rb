@@ -18,18 +18,19 @@ ActiveRecord::Schema.define(version: 20131217192847) do
     t.string   "result_uri"
     t.string   "userid"
     t.string   "contextid"
-    t.float    "score"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.float    "score",      limit: 24
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "lti2_tp_registrations", force: true do |t|
-    t.string   "tenant_key"
     t.string   "tenant_name"
+    t.string   "tenant_basename"
     t.integer  "tenant_id"
     t.string   "user_id"
     t.string   "reg_key"
     t.string   "reg_password"
+    t.integer  "tc_oauth_half_secret"
     t.string   "tc_profile_url"
     t.string   "launch_presentation_return_url"
     t.string   "status"
@@ -37,10 +38,10 @@ ActiveRecord::Schema.define(version: 20131217192847) do
     t.text     "tool_consumer_profile_json"
     t.text     "tool_profile_json"
     t.text     "tool_proxy_json"
+    t.text     "proposed_tool_proxy_json"
     t.integer  "tool_id"
     t.string   "lti_version",                    limit: 32
     t.string   "end_registration_id"
-    t.text     "proposed_tool_proxy_json"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
   end
@@ -89,7 +90,7 @@ ActiveRecord::Schema.define(version: 20131217192847) do
 
   create_table "tenants", force: true do |t|
     t.string   "tenant_key"
-    t.string   "secret"
+    t.text     "secret"
     t.string   "tenant_name"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
