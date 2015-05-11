@@ -21,11 +21,11 @@ namespace :init_task do
     puts "load mysql"
     system "rake db:load RAILS_ENV=mysql"
     puts "mysqldump to closet/backups"
-    system "mysqldump tpsampleapp -u ltiuser --password=ltipswd >> ../closet/backups/tpsampleapp.sql"
+    system "mysqldump tpsampleapp -u ltiuser --password=ltipswd >> data/tpsampleapp.sql"
     puts "load sqlite3"
     system "rake db:load RAILS_ENV=sqlite3"
     puts "copy sqlite3 to closet/backups"
-    system "cp db/development.sqlite3 ../closet/backups/tpsampleapp.sqlite3"
+    system "cp db/development.sqlite3 data/tpsampleapp.sqlite3"
   end
 
   desc "Truncate the wirelog"

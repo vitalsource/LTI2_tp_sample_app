@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131217192847) do
+ActiveRecord::Schema.define(version: 20150505214019) do
 
   create_table "iresources", force: true do |t|
     t.integer  "tenant_id"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20131217192847) do
     t.string   "user_id"
     t.string   "reg_key"
     t.string   "reg_password"
-    t.integer  "tc_oauth_half_secret"
+    t.text     "tc_oauth_half_secret"
     t.string   "tc_profile_url"
     t.string   "launch_presentation_return_url"
     t.string   "status"
