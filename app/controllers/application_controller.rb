@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
       request_wrapper = OAuthRequest.create_from_rack_request request
       (is_success, signature_base_string) = request_wrapper.verify_signature? secret, Rails.application.config.nonce_cache
       unless is_success
-        # puts "Secret: #{secret}"
+        puts "TP Secret: #{secret}"
         puts "TP Signed Request: #{request_wrapper.signature_base_string}"
         (redirect_to redirect_url("Invalid signature")) and return
       end
