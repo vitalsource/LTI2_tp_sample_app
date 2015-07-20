@@ -6,7 +6,9 @@ class LtiRegistrationWipsController < InheritedResources::Base
     @lti_registration_wip = LtiRegistrationWip.new
 
     # On orig registration, first assume tenant_name == name
-    @lti_registration_wip.tenant_name = registration.message_type == 'registration' ? registration.tenant_basename : registration.tenant_name
+    timeref = Time.now.strftime('%I%M.%S')
+    @lti_registration_wip.tenant_name = registration.message_type == 'registration' \
+            ? "#{registration.tenant_basename}-#{timeref}" : registration.tenant_name
 
     @lti_registration_wip.registration_id = registration_id
     @lti_registration_wip.registration_return_url = params[:return_url]

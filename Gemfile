@@ -7,6 +7,8 @@ gem 'rails', '~> 4.1.6'
 gem 'mysql2', '~> 0.3.13'
 gem 'sqlite3'
 
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
+
 # gem 'lti2', git: 'git@github.com:vitalsource/lti2-reference.git'
 gem 'lti2', path: '../LTI2-Reference'
 

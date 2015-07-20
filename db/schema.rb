@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150505214019) do
+ActiveRecord::Schema.define(version: 20150709175556) do
 
   create_table "iresources", force: true do |t|
     t.integer  "tenant_id"
@@ -24,24 +24,25 @@ ActiveRecord::Schema.define(version: 20150505214019) do
   end
 
   create_table "lti2_tp_registrations", force: true do |t|
+    t.integer  "tenant_id"
     t.string   "tenant_name"
     t.string   "tenant_basename"
-    t.integer  "tenant_id"
     t.string   "user_id"
     t.string   "reg_key"
-    t.string   "reg_password"
-    t.text     "tc_oauth_half_secret"
+    t.text     "reg_password"
+    t.text     "final_secret"
     t.string   "tc_profile_url"
     t.string   "launch_presentation_return_url"
     t.string   "status"
     t.string   "message_type"
+    t.string   "lti_version",                    limit: 32
+    t.string   "end_registration_id"
+    t.integer  "tool_id"
     t.text     "tool_consumer_profile_json"
     t.text     "tool_profile_json"
     t.text     "tool_proxy_json"
     t.text     "proposed_tool_proxy_json"
-    t.integer  "tool_id"
-    t.string   "lti_version",                    limit: 32
-    t.string   "end_registration_id"
+    t.text     "tool_proxy_response"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
   end
@@ -77,6 +78,16 @@ ActiveRecord::Schema.define(version: 20150505214019) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
+
+  create_table "sessions", force: true do |t|
+    t.string   "session_id", null: false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
   create_table "tenant_users", force: true do |t|
     t.integer  "tenant_id"
