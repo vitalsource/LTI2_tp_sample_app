@@ -66,11 +66,6 @@ class LtiRegistrationWipsController < InheritedResources::Base
     tenant = Tenant.where(:tenant_name=>@registration.tenant_name).first
     disposition = @registration.prepare_tool_proxy('reregister')
 
-    tool_proxy_wrapper = JsonWrapper.new(@registration.tool_proxy_json)
-    tool_proxy_response_wrapper = JsonWrapper.new(@registration.tool_proxy_response)
-
-    @registration.final_secret = change_secret(tenant, tool_proxy_wrapper, tool_proxy_response_wrapper)
-
     @registration.status = "reregistered"
     @registration.save!
 
