@@ -50,7 +50,8 @@ class LtiRegistrationWipsController < InheritedResources::Base
     tool_proxy_wrapper = JsonWrapper.new(@registration.tool_proxy_json)
     tool_proxy_response_wrapper = JsonWrapper.new(@registration.tool_proxy_response)
 
-    tenant.tenant_key = tool_proxy_wrapper.first_at('tool_proxy_guid')
+    tenant.tenant_key = tool_proxy_response_wrapper.first_at('tool_proxy_guid')
+    @registration.tool_proxy_guid = tool_proxy_response_wrapper.first_at('tool_proxy_guid')
 
     @registration.final_secret = change_secret(tenant, tool_proxy_wrapper, tool_proxy_response_wrapper)
     tenant.secret = @registration.final_secret
