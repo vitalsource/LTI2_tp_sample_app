@@ -13,9 +13,9 @@ class ApplicationController < ActionController::Base
 
     # no way home
     if params['lti_message_type']  == 'basic-lti-launch-request'
-    unless params.has_key?('launch_presentation_return_url')
-      render :inline => "<br><br><h2>LTI launch parameters are incomplete and no return URL has been provided</h2>" and return
-    end
+      unless params.has_key?('launch_presentation_return_url')
+        render :inline => "<br><br><h2>LTI launch parameters are incomplete and no return URL has been provided</h2>" and return
+      end
     end
 
     # OAuth check here

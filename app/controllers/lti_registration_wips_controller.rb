@@ -51,7 +51,6 @@ class LtiRegistrationWipsController < InheritedResources::Base
     tool_proxy_response_wrapper = JsonWrapper.new(@registration.tool_proxy_response)
 
     tenant.tenant_key = tool_proxy_response_wrapper.first_at('tool_proxy_guid')
-    @registration.tool_proxy_guid = tool_proxy_response_wrapper.first_at('tool_proxy_guid')
 
     @registration.final_secret = change_secret(tenant, tool_proxy_wrapper, tool_proxy_response_wrapper)
     tenant.secret = @registration.final_secret
@@ -64,7 +63,7 @@ class LtiRegistrationWipsController < InheritedResources::Base
   end
 
   def show_reregistration
-    tenant = Tenant.where(:tenant_name=>@registration.tenant_name).first
+    tenant = Tenant.where(:tenant_key=>@registration.reg_key).first
     disposition = @registration.prepare_tool_proxy('reregister')
 
     @registration.status = "reregistered"
@@ -73,6 +72,22 @@ class LtiRegistrationWipsController < InheritedResources::Base
     return_url = @registration.launch_presentation_return_url + disposition
 
     redirect_to_registration @registration, disposition
+  end
+
+  def complete_reregistration
+    @registration = Lti2Tp::Registration.find(request.params[:registration_id])
+    tenant_id = @registration.tenant_id
+    tenant = Tenant.find(tenant_id)
+    tool_proxy_wrapper = JsonWrapper.new(@registration.tool_proxy_json)
+    tool_proxy_response_wrapper = JsonWrapper.new(@registration.tool_proxy_response)
+
+    @registration.final_secret = change_secret(tenant, tool_proxy_wrapper, tool_proxy_response_wrapper)
+    @registration.save!
+
+    tenant.secret = @registration.final_secret
+    tenant.save
+
+    render :nothing => true, :status => '200'
   end
 
   def update
