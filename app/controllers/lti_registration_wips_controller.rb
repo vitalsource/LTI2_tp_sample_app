@@ -52,7 +52,7 @@ class LtiRegistrationWipsController < InheritedResources::Base
 
     tenant.tenant_key = tool_proxy_response_wrapper.first_at('tool_proxy_guid')
 
-    @registration.final_secret = change_secret(tenant, tool_proxy_wrapper, tool_proxy_response_wrapper)
+    @registration.final_secret = LtiRegistrationWip.change_secret(tenant, tool_proxy_wrapper, tool_proxy_response_wrapper)
     tenant.secret = @registration.final_secret
     tenant.save
 
@@ -74,22 +74,6 @@ class LtiRegistrationWipsController < InheritedResources::Base
     redirect_to_registration @registration, disposition
   end
 
-  def complete_reregistration
-    @registration = Lti2Tp::Registration.find(request.params[:registration_id])
-    tenant_id = @registration.tenant_id
-    tenant = Tenant.find(tenant_id)
-    tool_proxy_wrapper = JsonWrapper.new(@registration.tool_proxy_json)
-    tool_proxy_response_wrapper = JsonWrapper.new(@registration.tool_proxy_response)
-
-    @registration.final_secret = change_secret(tenant, tool_proxy_wrapper, tool_proxy_response_wrapper)
-    @registration.save!
-
-    tenant.secret = @registration.final_secret
-    tenant.save
-
-    render :nothing => true, :status => '200'
-  end
-
   def update
     @lti_registration_wip = LtiRegistrationWip.find(params[:id])
     @lti_registration_wip.tenant_name = params[:lti_registration_wip][:tenant_name]
@@ -103,18 +87,6 @@ class LtiRegistrationWipsController < InheritedResources::Base
   end
 
   private
-
-  def change_secret(tenant, tool_proxy_wrapper, tool_proxy_response_wrapper)
-    if tool_proxy_wrapper.first_at('security_contract.shared_secret').present?
-      final_secret = tool_proxy_wrapper.first_at('security_contract.shared_secret')
-    else
-      if tool_proxy_wrapper.first_at('security_contract.tp_half_shared_secret').present?
-        final_secret = tool_proxy_response_wrapper.first_at('tc_half_shared_secret') \
-          + tool_proxy_wrapper.first_at('security_contract.tp_half_shared_secret')
-      end
-    end
-    final_secret
-  end
 
   def redirect_to_registration registration, disposition
     redirect_to "#{@lti_registration_wip.registration_return_url}#{disposition}&id=#{registration.id}"
