@@ -12,8 +12,8 @@ gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 # remove following to use official oauth gem
 # gem 'oauth', path: '../oauth-sha256'
 
-# gem 'lti2', git: 'git@github.com:vitalsource/lti2-reference.git'
-gem 'lti2', path: '../LTI2-Reference'
+gem 'lti2', github: 'vitalsource/LTI2-Reference'
+# gem 'lti2', path: '../LTI2-Reference'
 
 gem 'activeadmin', github: 'gregbell/active_admin'
 #Active admin dependencies

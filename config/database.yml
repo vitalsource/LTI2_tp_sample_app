@@ -3,8 +3,8 @@ development:
   host: localhost
   encoding: utf8
   database: tpsampleapp
-  username: ltiuser
-  password: ltipswd
+  username: root
+#  password: ltipswd
   pool: 5
   timeout: 5000
 
