@@ -16,4 +16,5 @@ else
   Rails.application.config.wire_log = nil
 end
 
-puts("Init tp_deployment_url: #{Rails.application.config.tool_provider_registry.registry['tp_deployment_url']}")
+# puts("Init tp registry: #{Rails.application.config.tool_provider_registry.registry.inspect}")
+# puts("Init tp_deployment_url: #{Rails.application.config.tool_provider_registry.registry['tp_deployment_url']}")

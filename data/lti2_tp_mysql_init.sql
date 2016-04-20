@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.26)
 # Database: tpsampleapp
-# Generation Time: 2016-03-15 23:55:50 +0000
+# Generation Time: 2016-03-21 18:30:20 +0000
 # ************************************************************
 
 
@@ -119,7 +119,7 @@ LOCK TABLES `lti2_tp_registries` WRITE;
 
 INSERT INTO `lti2_tp_registries` (`id`, `name`, `content`, `created_at`, `updated_at`)
 VALUES
-	(1,'tp_deployment_url','http://kinexis3001.ngrok.io','2013-01-13 20:12:10','2013-01-13 20:12:10'),
+	(1,'tp_deployment_url','http://dockerdev:3001','2013-01-13 20:12:10','2013-01-13 20:12:10'),
 	(2,'security_contract_template','{ \"shared_secret\" : \"{aSecret}\",\n  \"tool_service\" : [ { \n	\"@id\": \":ToolProxy.collection\",\n	\"@type\" : \"RestServiceProfile\",\n        \"action\" : \"POST\",\n        \"service\" : \"http://lms.example.com/profile/b6ffa601-ce1d-4549-9ccf-145670a964d4#ToolProxy.collection\"\n      },\n      { \n	\"@id\": \":ToolProxy.item\",\n	\"@type\" : \"RestServiceProfile\",\n        \"action\" : [ \"GET\",\n            \"PUT\"\n          ],\n        \"service\" : \"http://lms.example.com/profile/b6ffa601-ce1d-4549-9ccf-145670a964d4#ToolProxy.item\"\n      },\n      { \n	\"@id\": \":ToolProxy.collection\",\n	\"@type\" : \"RestService\",\n        \"action\" : [ \"GET\",\n            \"PUT\"\n          ],\n        \"service\" : \"http://lms.example.com/profile/b6ffa601-ce1d-4549-9ccf-145670a964d4#Result.item\"\n      }\n    ]\n}','2013-01-13 20:12:10','2013-01-13 20:12:10'),
 	(3,'relaxed_oauth_check','false','2013-01-13 20:12:10','2013-01-13 20:12:10'),
 	(4,'result_template','{\n  \"@context\" : \"http://www.imsglobal.org/imspurl/lis/v2/ctx/Result\",\n  \"@type\" : \"Result\",\n  \"resultScore\" : {\n    \"@type\" : \"decimal\",\n    \"@value\"  : {value}\n  }\n}\n','2013-01-13 20:12:10','2013-01-13 20:12:10'),
@@ -195,6 +195,15 @@ CREATE TABLE `sessions` (
   KEY `index_sessions_on_updated_at` (`updated_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `sessions` WRITE;
+/*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
+
+INSERT INTO `sessions` (`id`, `session_id`, `data`, `created_at`, `updated_at`)
+VALUES
+	(1,'335c409e8de4567149303344e6d92d96','BAh7BkkiEF9jc3JmX3Rva2VuBjoGRUZJIjFmUnFxUEZjRVhzQVhHdU0vOVNO\nb2NBVkdKQ293RUdTeWFsRUNEL1dCbXlBPQY7AEY=\n','2016-03-17 13:09:57','2016-03-17 13:09:57');
+
+/*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table tenant_users
